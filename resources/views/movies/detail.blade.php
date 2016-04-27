@@ -37,15 +37,17 @@
                                         <td>{{ $movie->mpaa_rating }}</td>
                                         <td>{{ $criticsScore }}</td>
                                         <td>{{ $movie->runtime }}</td>
-                                        <td>Unrated</td>
+                                        <td>{{ $userRatings }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <p>{{ $movie->synopsis }}</p>
                                 <br>
                                 <p>Rate the movie!</p>
+                                <p>Your current rating is: {{ $currentUserRating }}</p>
                                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/movies/1/' . $movie->id) }}">
-                                    <select>
+                                    {!! csrf_field() !!}
+                                    <select name="rating">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -53,7 +55,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <br> <br>
-                                    <button type="submit" class="btn btn-default">Search</button>
+                                    <button type="submit" class="btn btn-default">Rate</button>
                                 </form>
                             </div>
                         </div>

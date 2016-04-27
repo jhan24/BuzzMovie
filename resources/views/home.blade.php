@@ -21,8 +21,14 @@
                     <div class="row" style="margin-top:10px">
                         <div class="col-md-12">
                             <a class="btn btn-default" href="/movies/search" role="button">Search Movies</a>
-                            <a class="btn btn-default" href="#" role="button">Recent Movies</a>
-                            <a class="btn btn-default" href="#" role="button">Recent DVDs</a>
+                            <a class="btn btn-default" href="/movies/list/latest" role="button">Recent Movies</a>
+                            <a class="btn btn-default" href="/movies/list/dvd" role="button">Recent DVDs</a>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-12">
+                            <a class="btn btn-default" href="/movies/recommendations/general" role="button">Get Recommendations</a>
+                            <a class="btn btn-default" href="/movies/recommendations/major" role="button">Get Major Recommendations</a>
                         </div>
                     </div>
                 </div>
