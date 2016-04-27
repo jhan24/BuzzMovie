@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li class="active">Data</li>
+                </ol>
                 <div class="panel panel-default">
                     <div class="panel-heading">Profile</div>
 
@@ -31,12 +36,31 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Username</label>
+
+                                <div class="col-md-6">
+                                    <input id="usernameText" type="text" class="form-control" name="username" value="{{ $user->username }}" readonly>
+
+                                    @if ($errors->has('username'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
 
-                                    <input type="email" class="form-control" name="email" value="{{ $user->email }}" readonly>
+                                    <div class="input-group">
+                                        <input id="emailText" type="email" class="form-control" name="email" value="{{ $user->email }}" readonly>
+                                        <span class="input-group-btn">
+                                            <button id="editEmailButton" type="button" class="btn btn-default">Edit</button>
+                                        </span>
+                                    </div>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -50,7 +74,12 @@
                                 <label class="col-md-4 control-label">Major</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="major" value="{{ $user->major }}" readonly>
+                                    <div class="input-group">
+                                        <input id="majorText" type="text" class="form-control" name="major" value="{{ $user->major }}" readonly>
+                                    <span class="input-group-btn">
+                                            <button id="editMajorButton" type="button" class="btn btn-default">Edit</button>
+                                        </span>
+                                    </div>
 
                                     @if ($errors->has('major'))
                                         <span class="help-block">
@@ -64,7 +93,12 @@
                                 <label class="col-md-4 control-label">Password</label>
 
                                 <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password" readonly>
+                                    <div class="input-group">
+                                        <input id="passwordText" type="password" class="form-control" name="password" readonly>
+                                    <span class="input-group-btn">
+                                            <button id="editPasswordButton" type="button" class="btn btn-default">Edit</button>
+                                        </span>
+                                    </div>
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -78,7 +112,7 @@
                                 <label class="col-md-4 control-label">Confirm Password</label>
 
                                 <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password_confirmation" readonly>
+                                    <input id="passwordConfirmationText" type="password" class="form-control" name="password_confirmation" readonly>
 
                                     @if ($errors->has('password_confirmation'))
                                         <span class="help-block">
@@ -105,6 +139,16 @@
     <script>
         $('#editNameButton').click(function() {
             $('#nameText').removeAttr("readonly");
+        });
+        $('#editEmailButton').click(function() {
+            $('#emailText').removeAttr("readonly");
+        });
+        $('#editMajorButton').click(function() {
+            $('#majorText').removeAttr("readonly");
+        });
+        $('#editPasswordButton').click(function() {
+            $('#passwordText').removeAttr("readonly");
+            $('#passwordConfirmationText').removeAttr("readonly");
         });
     </script>
 @endsection

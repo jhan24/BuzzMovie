@@ -21,12 +21,22 @@ class ProfileController extends Controller
     }
 
     public function editProfile(Request $request) {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'major' => 'required|max:255',
-            'password' => 'min:6|confirmed',
-        ]);
-        $data = $request->only(['name', 'password', 'major']);
+        $currentUser = Auth::user();
+        $data = $request->only(['name', 'email', 'password', 'major']);
+        if ($data['email'] == $currentUser->email) {
+            $this->validate($request, [
+                'name' => 'required|max:255',
+                'major' => 'required|max:255',
+                'password' => 'min:6|confirmed',
+            ]);
+        } else {
+            $this->validate($request, [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'major' => 'required|max:255',
+                'password' => 'min:6|confirmed',
+            ]);
+        }
         $this->edit($data);
         return view('profile', ['user' => Auth::user()]);
     }
@@ -35,6 +45,7 @@ class ProfileController extends Controller
         $currentUser = Auth::user();
         $currentUser->name = $data['name'];
         $currentUser->major = $data['major'];
+        $currentUser->email = $data['email'];
         if ($data['password'] != NULL) {
             $currentUser->password = bcrypt($data['password']);
         }
