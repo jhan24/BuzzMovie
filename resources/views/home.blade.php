@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -31,6 +32,13 @@
                             <a class="btn btn-default" href="/movies/recommendations/major" role="button">Get Major Recommendations</a>
                         </div>
                     </div>
+                    @if (Auth::user()->isAdmin == 1)
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-12">
+                                <a class="btn btn-default" href="/admin" role="button">Admin Panel</a>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
 

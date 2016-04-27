@@ -28,4 +28,6 @@ Route::get('/profile', 'ProfileController@showProfile');
 Route::post('/profile', 'ProfileController@editProfile');
 Route::get('/movies/recommendations/general', 'SearchMovieController@showRecommendations');
 Route::get('/movies/recommendations/major', 'SearchMovieController@showMajorRecommendations');
+Route::get('/admin', ['as' => 'showUserList', 'uses' => 'AdminController@showUserList']);
+Route::get('/admin/toggleBan/{id}', 'AdminController@toggleBan');
     

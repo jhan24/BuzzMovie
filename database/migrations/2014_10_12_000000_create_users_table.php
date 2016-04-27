@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('major');
             $table->string('password');
+            $table->boolean('isBanned');
+            $table->boolean('isAdmin');
             $table->rememberToken();
             $table->timestamps();
         });
